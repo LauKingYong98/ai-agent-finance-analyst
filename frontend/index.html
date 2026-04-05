@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agent Finance Analyst</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <div>
+        <div class="logo">AI Agent Finance Analyst</div>
+        <div class="logo-sub">Multi-Agent Investment Analysis · Powered by Claude</div>
+      </div>
+    </div>
+    <div class="search-container">
+      <form onsubmit="handleSearch(event)" style="display: flex; gap: 0.75rem;">
+        <input type="text" id="ticker-input" class="search-input" placeholder="Enter ticker..." maxlength="5">
+        <button type="submit" class="search-btn">
+          <i class="fa-solid fa-magnifying-glass"></i> Analyze
+        </button>
+      </form>
+      <div id="ticker-pills" class="ticker-pills"></div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-container" id="main-content">
+    <div class="welcome">
+      <h2>Investment Analysis Dashboard</h2>
+      <p>
+        Enter a stock ticker above to view the full multi-agent analysis.
+        Each analysis runs through 7 specialized AI agents across 5 phases:
+        parallel research, valuation, synthesis, adversarial review, and final thesis.
+      </p>
+      <div style="margin-top: 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;">
+        <div style="text-align: center; padding: 1.5rem; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); width: 160px;">
+          <i class="fa-solid fa-robot" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 0.5rem;"></i>
+          <div style="font-size: 2rem; font-weight: 800; color: var(--accent-blue);">7</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted);">AI Agents</div>
+        </div>
+        <div style="text-align: center; padding: 1.5rem; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); width: 160px;">
+          <i class="fa-solid fa-diagram-project" style="font-size: 1.5rem; color: var(--accent-purple); margin-bottom: 0.5rem;"></i>
+          <div style="font-size: 2rem; font-weight: 800; color: var(--accent-purple);">5</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted);">Analysis Phases</div>
+        </div>
+        <div style="text-align: center; padding: 1.5rem; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); width: 160px;">
+          <i class="fa-solid fa-shield-halved" style="font-size: 1.5rem; color: var(--accent-red); margin-bottom: 0.5rem;"></i>
+          <div style="font-size: 2rem; font-weight: 800; color: var(--accent-red);">1</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted);">Red Team Review</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Agent Detail Modal -->
+  <div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this) closeModal()">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title"></h3>
+        <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="modal-body-content"></div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

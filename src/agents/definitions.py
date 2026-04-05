@@ -56,6 +56,15 @@ SENTIMENT_AGENT = AgentDefinition(
     mcp_servers=[],
 )
 
+MACRO_AGENT = AgentDefinition(
+    name="macro",
+    model="claude-sonnet-4-6-20250514",
+    prompt_file="macro.md",
+    description="Macro strategy: market regime, geopolitics, rates, sector rotation",
+    tools=["web_search", "web_fetch"],
+    mcp_servers=[],
+)
+
 # Phase 2 agent — runs after Phase 1 completes
 VALUATION_AGENT = AgentDefinition(
     name="valuation",
@@ -92,12 +101,13 @@ AGENTS: dict[str, AgentDefinition] = {
     "quant": QUANT_AGENT,
     "fundamental": FUNDAMENTAL_AGENT,
     "sentiment": SENTIMENT_AGENT,
+    "macro": MACRO_AGENT,
     "valuation": VALUATION_AGENT,
     "fund_manager": FUND_MANAGER_AGENT,
     "red_team": RED_TEAM_AGENT,
 }
 
 # Phase groupings for the orchestrator
-PHASE_1_AGENTS = [QUANT_AGENT, FUNDAMENTAL_AGENT, SENTIMENT_AGENT]
+PHASE_1_AGENTS = [QUANT_AGENT, FUNDAMENTAL_AGENT, SENTIMENT_AGENT, MACRO_AGENT]
 PHASE_2_AGENTS = [VALUATION_AGENT]
 PHASE_4_AGENTS = [RED_TEAM_AGENT]
