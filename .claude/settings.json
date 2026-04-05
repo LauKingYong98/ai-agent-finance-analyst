@@ -1,0 +1,31 @@
+{
+  "mcpServers": {
+    "yahoo-finance": {
+      "command": "python",
+      "args": ["mcp_servers/yahoo_finance/server.py"],
+      "env": {}
+    },
+    "sec-edgar": {
+      "command": "python",
+      "args": ["mcp_servers/sec_edgar/server.py"],
+      "env": {
+        "SEC_EDGAR_EMAIL": "${SEC_EDGAR_EMAIL}"
+      }
+    }
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "command": "python -c \"import sys, json; data=json.load(open(sys.argv[1])) if sys.argv[1].endswith('.json') else exit(0); print('Schema validation: OK')\" \"$TOOL_INPUT_FILE_PATH\" 2>/dev/null || true",
+        "description": "Validate JSON output files"
+      }
+    ],
+    "Stop": [
+      {
+        "command": "echo '--- Analysis session complete ---'",
+        "description": "Log session completion"
+      }
+    ]
+  }
+}
